@@ -15,24 +15,40 @@ const EpisodeSkeleton = () => (
 );
 
 export default function PodcastPage() {
-  const [episodes, setEpisodes] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchLatestEpisodes() {
-      try {
-        const response = await fetch('/api/podcast');
-        const data = await response.json();
-        setEpisodes(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching latest episodes:', error);
-        setLoading(false);
+    const [episodes, setEpisodes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      async function fetchLatestEpisodes() {
+        try {
+          const response = await fetch('/api/podcast');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          setEpisodes(data);
+        } catch (error) {
+          console.error('Error fetching latest episodes:', error);
+          setError(error.message);
+        } finally {
+          setLoading(false);
+        }
       }
+  
+      fetchLatestEpisodes();
+    }, []);
+  
+    if (error) {
+      return (
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Error Loading Podcasts</h1>
+            <p className="text-gray-700 dark:text-gray-300">{error}</p>
+          </div>
+        </div>
+      );
     }
-
-    fetchLatestEpisodes();
-  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 py-1 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">

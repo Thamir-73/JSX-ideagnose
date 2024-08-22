@@ -39,7 +39,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           onClick={() => handlePageChange(page)}
           disabled={page === '...' || page === currentPage}
           className={`py-1.5 px-3 m-1 text-center bg-gray-100 border border-gray-300 rounded-md text-black dark:text-gray-300 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 ${
-            currentPage === page ? 'bg-gray-300 dark:bg-gray-400' : ''
+            currentPage === page ? 'bg-gray-300 dark:bg-[#6b7280]' : ''
           } ${page === '...' ? 'cursor-default' : 'cursor-pointer'}`}
         >
           {page}

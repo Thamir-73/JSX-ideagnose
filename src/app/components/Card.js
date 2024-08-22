@@ -48,13 +48,14 @@ const Card = forwardRef(({ image, title, comment, date, category, className, isA
           <div className="w-full sm:w-1/4 h-48 sm:h-auto relative pt-3 pb-2">
             <LightBulbIndicator isActive={isActive} />
             <div className="w-full h-full relative border border-gray-600 rounded-lg overflow-hidden">
-              <Image 
-                src={image} 
-                alt={title || 'Post image'} 
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
+            <Image 
+              src={image} 
+              alt={title || 'Post image'} 
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="rounded-lg object-cover"
+              unoptimized={image.endsWith('.gif')}
+            />
             </div>
           </div>
         )}

@@ -1,3 +1,4 @@
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
@@ -41,26 +42,49 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/penne8.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/penne8.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/penne8.png" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#F3F4F6" media="(prefers-color-scheme: light)" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#2C3E57" />
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const theme = localStorage.getItem('color-theme');
-                if (!theme) {
-                  localStorage.setItem('color-theme', 'dark');
-                  document.documentElement.classList.add('dark');
-                } else if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              })();
-            `,
-          }}
-        />
+  dangerouslySetInnerHTML={{
+    __html: `
+      (function() {
+        const theme = localStorage.getItem('color-theme');
+        if (!theme) {
+          localStorage.setItem('color-theme', 'dark');
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        
+        // Update theme-color meta tag based on current theme
+        const metaThemeColor = document.querySelector('meta[name=theme-color]');
+        if (!metaThemeColor) {
+          const newMeta = document.createElement('meta');
+          newMeta.name = 'theme-color';
+          document.head.appendChild(newMeta);
+        }
+        
+        // Define your status bar colors here
+        const darkStatusBarColor = '#2C3E57';  // Dark blue for dark mode
+        const lightStatusBarColor = '#f3f4f6'; // Light gray for light mode
+        
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          metaThemeColor.setAttribute('content', darkStatusBarColor);
+        } else {
+          metaThemeColor.setAttribute('content', lightStatusBarColor);
+        }
+        
+        // Listen for changes in color scheme
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          const newTheme = e.matches ? 'dark' : 'light';
+          metaThemeColor.setAttribute('content', newTheme === 'dark' ? darkStatusBarColor : lightStatusBarColor);
+        });
+      })();
+    `,
+  }}
+/>
       </head>
       <body className={`${inter.className} min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors duration-300`}>
         <ThemeProvider>

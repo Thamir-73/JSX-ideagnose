@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
 const COMMENTS_PER_PAGE = 10;
@@ -15,18 +15,9 @@ export default function Comments({ postSlug }) {
   const [hasMore, setHasMore] = useState(true)
   const [totalComments, setTotalComments] = useState(0)
   const formRef = useRef(null)
+  const nameInputRef = useRef(null)  // New ref for the name input
 
-  useEffect(() => {
-    fetchComments()
-  }, [postSlug, page, fetchComments])
-
-  useEffect(() => {
-    if (replyTo && formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [replyTo])
-
-  async function fetchComments() {
+  const fetchComments = useCallback(async () => {
     setIsLoading(true)
     setError(null)
     try {
@@ -48,7 +39,18 @@ export default function Comments({ postSlug }) {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [postSlug, page])
+
+  useEffect(() => {
+    fetchComments()
+  }, [fetchComments])
+
+  useEffect(() => {
+    if (replyTo && nameInputRef.current) {
+      nameInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      nameInputRef.current.focus()  // This will also focus the input field
+    }
+  }, [replyTo])
 
   function nestComments(comments) {
     const commentMap = {}
@@ -134,6 +136,7 @@ export default function Comments({ postSlug }) {
       
       <form ref={formRef} onSubmit={handleSubmit} className="mb-8">
         <input
+          ref={nameInputRef}  // Add this ref to the name input
           type="text"
           placeholder="Your name"
           value={newComment.author}

@@ -1,4 +1,3 @@
-// src/app/api/podcast/route.js
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
 
@@ -9,14 +8,21 @@ export async function GET() {
       auth: process.env.YOUTUBE_API_KEY
     });
 
+    if (!process.env.YOUTUBE_API_KEY || !process.env.YOUTUBE_PLAYLIST_ID) {
+      throw new Error('Missing YouTube API key or playlist ID');
+    }
+
     const response = await youtube.playlistItems.list({
       part: 'snippet',
       playlistId: process.env.YOUTUBE_PLAYLIST_ID,
-      maxResults: 50,  // Fetch more items to ensure we get the latest
-      order: 'date'    // This sorts by date, but in ascending order
+      maxResults: 50,
+      order: 'date'
     });
 
-    // Sort the items by date in descending order and take the first two
+    if (!response.data.items || response.data.items.length === 0) {
+      throw new Error('No episodes found');
+    }
+
     const latestEpisodes = response.data.items
       .sort((a, b) => new Date(b.snippet.publishedAt) - new Date(a.snippet.publishedAt))
       .slice(0, 2)
@@ -31,6 +37,6 @@ export async function GET() {
     return NextResponse.json(latestEpisodes);
   } catch (error) {
     console.error('Error fetching latest podcasts:', error);
-    return NextResponse.json({ error: 'Error fetching latest podcasts' }, { status: 500 });
+    return NextResponse.json({ error: error.message || 'Error fetching latest podcasts' }, { status: 500 });
   }
 }
