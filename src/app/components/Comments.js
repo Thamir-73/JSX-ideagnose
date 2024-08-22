@@ -18,7 +18,7 @@ export default function Comments({ postSlug }) {
 
   useEffect(() => {
     fetchComments()
-  }, [postSlug, page])
+  }, [postSlug, page, fetchComments])
 
   useEffect(() => {
     if (replyTo && formRef.current) {

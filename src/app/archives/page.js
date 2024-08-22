@@ -36,6 +36,46 @@ const ArchivesPage = () => {
   const postsPerPage = 15;
   const yearRefs = useRef({});
 
+  const groupPostsByYear = useCallback((posts) => {
+    return posts.reduce((acc, post) => {
+      const year = new Date(post.date).getFullYear();
+      if (!acc[year]) acc[year] = [];
+      acc[year].push(post);
+      return acc;
+    }, {});
+  }, []);
+
+  const findSearchContext = useCallback((content, term) => {
+    const index = content.toLowerCase().indexOf(term);
+    if (index === -1) return '';
+    const start = Math.max(0, index - 30);
+    const end = Math.min(content.length, index + term.length + 30);
+    return '...' + content.slice(start, end) + '...';
+  }, []);
+
+  const handleSearch = useCallback((event) => {
+    const term = event.target.value.toLowerCase();
+    setSearchTerm(term);
+  
+    if (term.length > 0) {
+      const results = posts.filter(post => 
+        post.title.toLowerCase().includes(term) || 
+        post.content.toLowerCase().includes(term) ||
+        (post.category && post.category.toLowerCase().includes(term))
+      ).map(post => ({
+        ...post,
+        context: findSearchContext(post.content, term)
+      }));
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  }, [posts, findSearchContext]);
+
+  const handlePageChange = useCallback((page) => {
+    setCurrentPage(page);
+  }, []);
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -55,7 +95,7 @@ const ArchivesPage = () => {
   useEffect(() => {
     const grouped = groupPostsByYear(posts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage));
     setGroupedPosts(grouped);
-  }, [posts, currentPage]);
+  }, [posts, currentPage, groupPostsByYear, postsPerPage]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,47 +130,7 @@ const ArchivesPage = () => {
     scrollToTop();
   }, [currentPage]);
 
-  const groupPostsByYear = useCallback((posts) => {
-    return posts.reduce((acc, post) => {
-      const year = new Date(post.date).getFullYear();
-      if (!acc[year]) acc[year] = [];
-      acc[year].push(post);
-      return acc;
-    }, {});
-  }, []);
-
   const totalPages = Math.ceil(posts.length / postsPerPage);
-
-  const handlePageChange = useCallback((page) => {
-    setCurrentPage(page);
-  }, []);
-
-  const handleSearch = useCallback((event) => {
-    const term = event.target.value.toLowerCase();
-    setSearchTerm(term);
-  
-    if (term.length > 0) {
-      const results = posts.filter(post => 
-        post.title.toLowerCase().includes(term) || 
-        post.content.toLowerCase().includes(term) ||
-        (post.category && post.category.toLowerCase().includes(term))
-      ).map(post => ({
-        ...post,
-        context: findSearchContext(post.content, term)
-      }));
-      setSearchResults(results);
-    } else {
-      setSearchResults([]);
-    }
-  }, [posts]);
-
-  const findSearchContext = useCallback((content, term) => {
-    const index = content.toLowerCase().indexOf(term);
-    if (index === -1) return '';
-    const start = Math.max(0, index - 30);
-    const end = Math.min(content.length, index + term.length + 30);
-    return '...' + content.slice(start, end) + '...';
-  }, []);
 
   return (
     <div className="pt-20 pb-16 px-4 min-h-screen bg-gradient-to-r from-gray-200 to-gray-200 dark:from-gray-800 dark:to-gray-900 relative">

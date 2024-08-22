@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { FaSearch, FaQuoteLeft } from 'react-icons/fa';
 
 const renderQuoteWithTags = (quote) => {
@@ -33,31 +33,32 @@ const QuotesPage = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [noResults, setNoResults] = useState(false);
 
-  useEffect(() => {
-    async function fetchQuotes() {
-      setIsLoading(true);
-      try {
-        const response = await fetch('/api/quotes');
-        if (!response.ok) {
-          throw new Error(`Failed to fetch quotes: ${response.status} ${response.statusText}`);
-        }
-        const quotesList = await response.json();
-        if (!Array.isArray(quotesList)) {
-          throw new Error(`Unexpected response format: ${JSON.stringify(quotesList)}`);
-        }
-        setQuotes(quotesList);
-        setFilteredQuotes(quotesList);
-        setVisibleQuotes(quotesList.slice(0, 10));
-        setError(null);
-      } catch (error) {
-        console.error('Error fetching quotes:', error);
-        setError(`Failed to load quotes: ${error.message}`);
-      } finally {
-        setIsLoading(false);
+  const fetchQuotes = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/quotes');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch quotes: ${response.status} ${response.statusText}`);
       }
+      const quotesList = await response.json();
+      if (!Array.isArray(quotesList)) {
+        throw new Error(`Unexpected response format: ${JSON.stringify(quotesList)}`);
+      }
+      setQuotes(quotesList);
+      setFilteredQuotes(quotesList);
+      setVisibleQuotes(quotesList.slice(0, 10));
+      setError(null);
+    } catch (error) {
+      console.error('Error fetching quotes:', error);
+      setError(`Failed to load quotes: ${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
-    fetchQuotes();
   }, []);
+
+  useEffect(() => {
+    fetchQuotes();
+  }, [fetchQuotes]);
 
   useEffect(() => {
     const filtered = quotes.filter(quote => 
@@ -70,6 +71,7 @@ const QuotesPage = () => {
   }, [searchTerm, quotes]);
 
   useEffect(() => {
+    const currentQuoteRefs = quoteRefs.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -82,12 +84,12 @@ const QuotesPage = () => {
       { threshold: 0.1 }
     );
 
-    quoteRefs.current.forEach((ref) => {
+    currentQuoteRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      quoteRefs.current.forEach((ref) => {
+      currentQuoteRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -164,28 +166,28 @@ const QuotesPage = () => {
         )}
         {error && <p className="text-red-500">{error}</p>}
         <div className="space-y-6">
-  {visibleQuotes.map((quote, index) => (
-    <div
-      key={index}
-      ref={(el) => {
-        quoteRefs.current[index] = el;
-        if (index === visibleQuotes.length - 1) {
-          lastQuoteRef.current = el;
-        }
-      }}
-      className={`bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md opacity-0 transition-opacity duration-500 ease-in-out relative ${
-        isSearching && quote.toLowerCase().includes(searchTerm.toLowerCase())
-          ? 'border-2 border-blue-500'
-          : ''
-      }`}
-    >
-      <FaQuoteLeft className="absolute top-4 left-4 text-gray-300 dark:text-gray-600 text-4xl opacity-50" />
-      <p className="text-gray-500 dark:text-gray-300 pl-8 prose-lg">
-        {renderQuoteWithTags(quote)}
-      </p>
-    </div>
-  ))}
-</div>
+          {visibleQuotes.map((quote, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                quoteRefs.current[index] = el;
+                if (index === visibleQuotes.length - 1) {
+                  lastQuoteRef.current = el;
+                }
+              }}
+              className={`bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md opacity-0 transition-opacity duration-500 ease-in-out relative ${
+                isSearching && quote.toLowerCase().includes(searchTerm.toLowerCase())
+                  ? 'border-2 border-blue-500'
+                  : ''
+              }`}
+            >
+              <FaQuoteLeft className="absolute top-4 left-4 text-gray-300 dark:text-gray-600 text-4xl opacity-50" />
+              <p className="text-gray-500 dark:text-gray-300 pl-8 prose-lg">
+                {renderQuoteWithTags(quote.replace(/'/g, "&apos;").replace(/"/g, "&quot;"))}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

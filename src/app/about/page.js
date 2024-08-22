@@ -16,6 +16,7 @@ const AboutPage = () => {
     const email = "Thamir.299@hotmail.com"; // Replace with your actual email
 
   useEffect(() => {
+    const currentRefs = revealRefs.current;
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -32,12 +33,12 @@ const AboutPage = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    revealRefs.current.forEach((ref) => {
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      revealRefs.current.forEach((ref) => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -113,11 +114,11 @@ const AboutPage = () => {
               className="rounded-full mb-4"
             />
             <p className="text-gray-600 dark:text-gray-400 text-center max-w-2xl">
-              I'm Thamir. I started this blog as an avenue to share my thoughts as I think & research Philosophy, Metaphysics, Science, History, & more.
+              I&apos;m Thamir. I started this blog as an avenue to share my thoughts as I think &amp; research Philosophy, Metaphysics, Science, History, &amp; more.
               <br /><br />
               You know what?
               <br /><br />
-              I don't think those "specific" intellectual interests are the only ones, because I'm literally interested in almost everything intellectual, like literally…
+              I don&apos;t think those "specific" intellectual interests are the only ones, because I&apos;m literally interested in almost everything intellectual, like literally…
               <br /><br />
               So In a nutshell,
               <br />
@@ -158,9 +159,9 @@ const AboutPage = () => {
           <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6">About the Blog</h2>
           <div className="text-gray-600 dark:text-gray-400">
             <p className="mb-4">
-              If you wanna know more about what the blog is about, specific to your interests, <br /> I made the search very "searchable", <br /><br /> so just use the search to look for words or concepts you're interested in, and if that word was written once, or is in the titles, or is in the categories, you'll find it.
+              If you wanna know more about what the blog is about, specific to your interests, <br /> I made the search very "searchable", <br /><br /> so just use the search to look for words or concepts you&apos;re interested in, and if that word was written once, or is in the titles, or is in the categories, you&apos;ll find it.
               <br /><br />
-              I know you're probably thinking, what the hell is this name (ideagnose), but hear me out:
+              I know you&apos;re probably thinking, what the hell is this name (ideagnose), but hear me out:
               <br /><br />
               it was a combination between two words: idea and diagnose. The two words were merged in hope to get a new meaning out of these two words, which is: the trial to "diagnose" different ideas and philosophies.
               <br /><br />
