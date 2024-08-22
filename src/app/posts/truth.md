@@ -96,7 +96,7 @@ Truth is objective in the sense that it varies independently of anyone’s perce
 ## Practical side of it:
 What could be some practical sides of this thing we call truth? What consequences does it hold in a practical sense? 
 Truth is, in some sense, the essence of all “errors” we confess to ourselves and others from a practical perspective, because errors necessitate the existence of objective truth, since they require an “outsider’s” perception. Truth is also the ultimate common ground for any language and communication. a dialectic is just utterly not possible without truth, because if we obliterate the concept as we illustrated it today with a complete understanding of the consequences, All aspects of human endeavours, from trying to understand emotions to trying to understand the stars is just not possible without somehow re-presupposing truth as we explicated it today. <hr>
-![](/img/Tt.jpeg)
+![](/Tt.jpeg)
 <hr>
 
 <b>This is a brief visual representation about the things discussed. 

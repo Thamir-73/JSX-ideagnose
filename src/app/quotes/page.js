@@ -20,6 +20,7 @@ const renderQuoteWithTags = (quote) => {
   ));
 };
 
+
 const QuotesPage = () => {
   const [quotes, setQuotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -166,28 +167,28 @@ const QuotesPage = () => {
         )}
         {error && <p className="text-red-500">{error}</p>}
         <div className="space-y-6">
-          {visibleQuotes.map((quote, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                quoteRefs.current[index] = el;
-                if (index === visibleQuotes.length - 1) {
-                  lastQuoteRef.current = el;
-                }
-              }}
-              className={`bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md opacity-0 transition-opacity duration-500 ease-in-out relative ${
-                isSearching && quote.toLowerCase().includes(searchTerm.toLowerCase())
-                  ? 'border-2 border-blue-500'
-                  : ''
-              }`}
-            >
-              <FaQuoteLeft className="absolute top-4 left-4 text-gray-300 dark:text-gray-600 text-4xl opacity-50" />
-              <p className="text-gray-500 dark:text-gray-300 pl-8 prose-lg">
-                {renderQuoteWithTags(quote.replace(/'/g, "&apos;").replace(/"/g, "&quot;"))}
-              </p>
-            </div>
-          ))}
-        </div>
+        {visibleQuotes.map((quote, index) => (
+          <div
+            key={index}
+            ref={(el) => {
+              quoteRefs.current[index] = el;
+              if (index === visibleQuotes.length - 1) {
+                lastQuoteRef.current = el;
+              }
+            }}
+            className={`bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md opacity-0 transition-opacity duration-500 ease-in-out relative ${
+              isSearching && quote.toLowerCase().includes(searchTerm.toLowerCase())
+                ? 'border-2 border-blue-500'
+                : ''
+            }`}
+          >
+            <FaQuoteLeft className="absolute top-4 left-4 text-gray-300 dark:text-gray-600 text-4xl opacity-50" />
+            <p className="text-gray-500 dark:text-gray-300 pl-8 prose-lg">
+              {renderQuoteWithTags(quote)}
+            </p>
+          </div>
+        ))}
+      </div>
       </div>
     </div>
   );

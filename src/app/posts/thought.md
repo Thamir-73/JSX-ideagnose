@@ -132,7 +132,7 @@ let’s think about this diagram, in which it illustrates our approach to unders
 and how it also relates to our last point.
 
 Although I don’t think this illustration is a very good and clear representation of the ideas in an accurate manner, it might just be a rough random reminder to just keep it in mind:
-![](img/und.jpg)
+![](/und.jpg)
 
 
 

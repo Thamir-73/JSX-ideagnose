@@ -110,7 +110,7 @@ Now, I do want to stress that I don’t want it to come across like I’m detach
 because both of them are actually informed by each other,
 
 And we mentioned previously, they’re both overlapping in many ways, but also dissimilar in many other different interesting ways we discussed.
-![](img/IMG_1276.jpg)
+![](/IMG_1276.jpg)
 
 ### Truthful or Useful?:
 

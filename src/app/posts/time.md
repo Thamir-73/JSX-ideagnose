@@ -22,7 +22,7 @@ It’s not obvious to me how relevant this question is to time management, but i
 So let’s begin by trying to answer the question, and I’ll start-off with an illustration I drew that will make things much easier to understand throughout the answer:
 
 ###  Building the model from scratch:
-![](img/dra.jpg)
+![](/dra.jpg)
 
 
 The first thing to establish is that this framework is really a general description on <b>how we act</b>, rather than <b>how it should be</b> in every context. Obviously, this semi-informs how things should be in some regard, but it’s not at all exhaustive. 

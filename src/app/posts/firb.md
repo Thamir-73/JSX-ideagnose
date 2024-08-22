@@ -19,10 +19,10 @@ Taking this a step further, let’s try examining the behavior of Adolf Hitler i
 When it comes to experiences, I tend to think it’s useful to evaluate what’s pushing us towards going through a certain experience or towards avoiding it, even if it seems obvious that it’s the “right” thing to do. For example, if we take “comfort zones” (whatever that means), and say that a person’s “comfort” lies within a certain limit in a social context e.g. comfortable not approaching people. This comfort the person has built can actually skew ones career goals ,for example, towards being inside this “comfort zone”, if that makes sense.  So in this example the “comfort zone” might be put as a priority subconsciously rather than a certain career goal, which might at one point lead the person to actually change their career goals to “good enough” rather than “great” just to encompass his/her experiences within the boundaries of this psychological status i.e. comfort zone (the good/great scale here is the person’s actual desire if the “comfort zone” was absent).
                     
 To make it more vivid, let’s check out a semi-visual depiction of the process of enacting in a certain behavior/experience in two drawings I drew, which compares two types of approaches towards an experience or behavior in a crude way. When behavior goes to become an automated process:
-<img src="/img/Untitled1.png" />
+<img src="/Untitled1.png" />
 
 Trial to optimize by passing the behavior through a "filter" i.e. constant recognition of behavior drivers: 
-<img src="/img/Untitled2.jpeg" />
+<img src="/Untitled2.jpeg" />
                     
                 
 
