@@ -12,7 +12,9 @@ const nextConfig = {
         },
       ],
     },
-    // other configurations...
+    swcMinify: true,
+    reactStrictMode: true,
+    poweredByHeader: false,
   };
   
   export default nextConfig;
