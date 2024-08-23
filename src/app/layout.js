@@ -1,10 +1,10 @@
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import { ThemeProvider } from './components/ThemeProvider';
 import Footer from './components/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,6 @@ export const metadata = {
         height: 630,
       },
     ],
-   
   },
   twitter: {
     card: "summary_large_image",
@@ -31,60 +30,27 @@ export const metadata = {
     description: "",
     images: ["https://www.ideagnose.com/full1logo.png"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/penne8.png", sizes: "32x32", type: "image/png" },
+      { url: "/penne8.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/penne8.png", sizes: "180x180" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className="h-full dark">
+    <html lang="en" suppressHydrationWarning className="dark">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/penne8.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/penne8.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/penne8.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#2C3E57" />
-        <script
-  dangerouslySetInnerHTML={{
-    __html: `
-      (function() {
-        const theme = localStorage.getItem('color-theme');
-        if (!theme) {
-          localStorage.setItem('color-theme', 'dark');
-          document.documentElement.classList.add('dark');
-        } else if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-        
-        // Update theme-color meta tag based on current theme
-        const metaThemeColor = document.querySelector('meta[name=theme-color]');
-        if (!metaThemeColor) {
-          const newMeta = document.createElement('meta');
-          newMeta.name = 'theme-color';
-          document.head.appendChild(newMeta);
-        }
-        
-        // Define your status bar colors here
-        const darkStatusBarColor = '#2C3E57';  // Dark blue for dark mode
-        const lightStatusBarColor = '#f3f4f6'; // Light gray for light mode
-        
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          metaThemeColor.setAttribute('content', darkStatusBarColor);
-        } else {
-          metaThemeColor.setAttribute('content', lightStatusBarColor);
-        }
-        
-        // Listen for changes in color scheme
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-          const newTheme = e.matches ? 'dark' : 'light';
-          metaThemeColor.setAttribute('content', newTheme === 'dark' ? darkStatusBarColor : lightStatusBarColor);
-        });
-      })();
-    `,
-  }}
-/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="theme-color" content="#2C3E57" />
+        <Script src="/scripts/theme.js" strategy="beforeInteractive" />
       </head>
       <body className={`${inter.className} min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors duration-300`}>
         <ThemeProvider>
@@ -94,8 +60,8 @@ export default function RootLayout({ children }) {
           </main>
           <Footer />
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-6Q4VNLV08G" />
       </body>
-      <GoogleAnalytics gaId="G-6Q4VNLV08G" />
     </html>
   );
 }
