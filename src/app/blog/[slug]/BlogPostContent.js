@@ -11,6 +11,16 @@ const SubstackEmbed = dynamic(() => import('../../components/SubstackEmbed'), {
   ssr: false
 });
 
+const createHeadingWithId = (Tag) => ({node, ...props}) => {
+  const id = React.Children.toArray(props.children)
+    .filter(child => typeof child === 'string')
+    .join('')
+    .toLowerCase()
+    .replace(/\s/g, '-');
+
+  return <Tag id={id} {...props} />;
+};
+
 export default async function BlogPostContent({ slug }) {
   const post = await getPostBySlug(slug);
 
@@ -42,9 +52,9 @@ export default async function BlogPostContent({ slug }) {
               <ReactMarkdown
                 rehypePlugins={[rehypeRaw]}
                 components={{
-                  h1: ({node, ...props}) => <h1 id={props.children.toLowerCase().replace(/\s/g, '-')} {...props} />,
-                  h2: ({node, ...props}) => <h2 id={props.children.toLowerCase().replace(/\s/g, '-')} className="text-slate-700 dark:text-slate-200" {...props} />,
-                  h3: ({node, ...props}) => <h3 id={props.children.toLowerCase().replace(/\s/g, '-')} className="text-slate-700 dark:text-slate-200" {...props} />,
+                  h1: createHeadingWithId('h1'),
+                  h2: createHeadingWithId('h2'),
+                  h3: createHeadingWithId('h3'),
                 }}
               >
                 {post.content}
