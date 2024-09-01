@@ -11,14 +11,19 @@ const SubstackEmbed = dynamic(() => import('../../components/SubstackEmbed'), {
   ssr: false
 });
 
-const createHeadingWithId = (Tag) => ({node, ...props}) => {
-  const id = React.Children.toArray(props.children)
-    .filter(child => typeof child === 'string')
-    .join('')
-    .toLowerCase()
-    .replace(/\s/g, '-');
+const createHeadingWithId = (Tag) => {
+  const HeadingWithId = ({node, ...props}) => {
+    const id = React.Children.toArray(props.children)
+      .filter(child => typeof child === 'string')
+      .join('')
+      .toLowerCase()
+      .replace(/\s/g, '-');
 
-  return <Tag id={id} {...props} />;
+    return <Tag id={id} {...props} />;
+  };
+
+  HeadingWithId.displayName = `HeadingWithId(${Tag})`;
+  return HeadingWithId;
 };
 
 export default async function BlogPostContent({ slug }) {
