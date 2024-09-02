@@ -5,7 +5,7 @@ category: "Psychology/Self-reflection"
 image: "/success23.jpg"
 comment: "I recently visited to Cuba, and realized somethings that changed the structure of my beliefs on success:"
 ---
-I recently visited to Cuba, and realized somethings that changed the structure of my beliefs on success, in so many ways.
+I recently visited Cuba, and realized somethings that changed the structure of my beliefs on success, in so many ways.
 
 Since the country is really different in every way possible, from how people conduct their daily life, and also on the possibilities that lie in front of people.
 
