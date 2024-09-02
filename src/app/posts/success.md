@@ -2,8 +2,8 @@
 title: "The success that's always in your hands:"
 date: "2024-09-02"
 category: "Psychology/Self-reflection"
-image: "/success21.jpg"
-comment: "I recently visited to Cuba, and realized somethings that changed the structure of my beliefs on success"
+image: "/success22.jpg"
+comment: "I recently visited to Cuba, and realized somethings that changed the structure of my beliefs on success:"
 ---
 I recently visited to Cuba, and realized somethings that changed the structure of my beliefs on success, in so many ways.
 
