@@ -3,6 +3,8 @@
 
 
 
+Try "I'll just figure it out in a walk" as your new antidote to anxiety, you'll be surprised how far you get...
+
 <!--quote0-->
 The true adventure of life starts when you understand the gap between yourself & best self is infinite.
 
@@ -123,5 +125,5 @@ An Exception can be the sole enemy of habits. The only objective needed in build
 <!--quote35-->
 We built all these technologies to make things “easy/comfortable”, then “easy” became the new hard on the human psychology…
 
-<!--quote36-->
+<!--quote37-->
 The collapse of the sacred into the profane, collapsed the moral into the temperamental.
