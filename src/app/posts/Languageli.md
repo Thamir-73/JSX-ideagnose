@@ -73,7 +73,7 @@ cognition “thinks” it doesn’t necessarily need language (which in a sense,
 
 So is language indeed a limitation to our cognition?
 
-My initial intuition to this question, is that it’s a limit that unlimits (![if you know what I mean :) ](https://www.ideagnose.com/blog/natureofcon) ). 
+My initial intuition to this question, is that it’s a limit that unlimits [if you know what I mean :) ](https://www.ideagnose.com/blog/natureofcon). 
 
 yeah, long-time OG readers know I just never give simple answers, folks, we are not here for the “simple” answers.
 
