@@ -1,7 +1,7 @@
 ---
 title: "Is Language a Limitation To Our Cognition?"
-date: "2024-10-16"
-category: "philosophy"
+date: "2024-10-17"
+category: "Philosophy"
 image: "/lok.webp"
 comment: "Is language indeed a limitation to our cognition and reason, as many people claim it is?"
 ---
@@ -46,7 +46,7 @@ So even when removing any social aspect of language, language literally produces
 
 So now that we sorted out some general purposes/consequences of language, let’s get one part of it, straight in our heads:
 
-The world without language is <b>not</b>incomprehensible. which is a huge misconception people tend to ascribe to it, especially, when thinking about the second purpose laid above (language being a right-hand to attention).
+The world without language is <b>not</b> incomprehensible. which is a huge misconception people tend to ascribe to it, especially, when thinking about the second purpose laid above (language being a right-hand to attention).
 
 There are countless animals that have fully functional cognition, without any access to language, 
 
