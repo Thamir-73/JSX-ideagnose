@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Is Language a Limitation To Our Cognition?"
 date: "2024-10-16"
 category: "philosophy"
 image: "/lok.webp"
@@ -185,7 +185,6 @@ And another perhaps personal opinion is that,
 I personally think I wouldn’t be able to “communicate” with a direct brain impulse,
 
 because I literally don’t know what I am really thinking, until I am discussing with someone through the constraint of language. It’s emergent in every way possible as far as I see it.
-
 
 ### Conclusion:
 
