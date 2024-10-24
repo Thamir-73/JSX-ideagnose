@@ -5,7 +5,7 @@
 
 <!--quote-2-->
 Things tend to fall into their place when you follow God.
-<br>
+<br><br>
 Anxieties tend to be blown out of their place when you follow God.
 
 <!--quote-1-->
