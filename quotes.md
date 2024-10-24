@@ -3,6 +3,12 @@
 
 
 
+<!--quote-2-->
+Things tend to fall into their place when you follow God.
+<br>
+Anxieties tend to be blown out of their place when you follow God.
+
+<!--quote-1-->
 Try "I'll just figure it out in a walk" as your new antidote to anxiety, you'll be surprised how far you get...
 
 <!--quote0-->
